@@ -2,6 +2,7 @@ import {HomeApiCall} from "@/api/ApiCall";
 import {Pokemon} from "@/api/Pokemon";
 import {EncounterMethod} from "@/api/EncounterMethod";
 import {Ability} from "@/api/Ability";
+import {Move} from "@/api/Move";
 
 export async function homeApiCall(limit: number, offset: number): Promise<HomeApiCall> {
     return fetch("https://pokeapi.co/api/v2/pokemon/?limit="+limit+"&offset="+offset)
@@ -32,5 +33,13 @@ export async function getAbilityByURL(url: string): Promise<Ability> {
         .then(res => res.json())
         .then(res => {
             return res as Ability
+        })
+}
+
+export async function getMoveByURL(url: string): Promise<Move> {
+    return await fetch(url)
+        .then(res => res.json())
+        .then(res => {
+            return res as Move
         })
 }

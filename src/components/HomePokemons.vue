@@ -48,11 +48,11 @@ export default class HomePokemons extends Vue {
 </script>
 <template>
   <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full mb-5">
-    <div class="flex justify-center bg-gray-200 rounded-md" v-for="pokemon in results.results" v-bind:key="pokemon">
-      <PokemonCard :pokemon="pokemon"/>
+    <div class="flex justify-center border-t-4 border-r-2 border-l-gray-700 border-b-gray-700 border-b border-l border-bag_light rounded-md" v-for="pokemon in results.results" v-bind:key="pokemon">
+      <PokemonCard class="w-full flex items-center bg-bag rounded-sm" :pokemon="pokemon"/>
     </div>
   </div>
-  <div class="flex text-center justify-center">
+  <div class="flex text-center justify-center text-black">
     <div class="w-full flex justify-center">
       <div class="p-5 bg-gray-100 rounded-md w-3/4 sm:w-1/2" v-if="this.offset-this.limit >= 0"  v-on:click="previous()">previous</div>
       <div class="p-5 bg-gray-100 rounded-md w-3/4 sm:w-1/2 text-gray-400" v-else>previous</div>
@@ -62,3 +62,7 @@ export default class HomePokemons extends Vue {
     </div>
   </div>
 </template>
+
+<style scoped>
+
+</style>

@@ -1,5 +1,5 @@
 import {Language, Translation} from "@/api/EncounterMethod";
-import {Version} from "@/api/Version";
+import {Version, VersionDetail, VersionGroupDetail} from "@/api/Version";
 import {BasePokemon} from "@/api/Pokemon";
 
 export type AbilityData = {
@@ -46,4 +46,10 @@ export type Entry = {
     effect: string
     language: Language
     short_effect: string
+}
+
+export type FlavorEntry = {
+    flavor_text: string
+    language: Language
+    version_group: Version
 }

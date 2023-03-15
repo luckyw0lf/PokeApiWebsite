@@ -1,8 +1,9 @@
 <template>
-  <div class="w-full flex justify-center">
-    <div class="w-3/4">
+  <div class="w-full flex justify-center text-white">
+    <div class="w-11/12 sm:w-3/4">
     <nav class="flex justify-center items-center">
-      <poke-dex-logo/>
+          <router-link to="/"><PokeDexLogo/></router-link>
+          <LangSelector/>
 <!--      <router-link to="/">Home</router-link> |-->
 <!--      <router-link to="/about">About</router-link>-->
     </nav>
@@ -19,22 +20,20 @@
   color: #2c3e50;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
 <script>
 import PokeDexLogo from "@/components/PokeDexLogo";
+import LangSelector from "@/components/LangSelector"
+import {Options, Vue} from "vue-class-component";
 
-export default {
+@Options({
   components: {
-    PokeDexLogo
+    PokeDexLogo,
+    LangSelector
   }
+})
+export default class App extends Vue{
+
 }
 </script>
 

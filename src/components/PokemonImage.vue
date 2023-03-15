@@ -1,5 +1,5 @@
 <template>
-  <img class="object-cover w-24" :src="imagePath()" alt="">
+  <img class="object-cover w-20" :src="imagePath()" alt="">
 </template>
 
 <script lang="ts">

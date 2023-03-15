@@ -1,5 +1,5 @@
 import {AbilityData} from "@/api/Ability";
-import {BaseMove} from "@/api/Move";
+import {MoveData} from "@/api/Move";
 import {GameIndex} from "@/api/Version";
 import {HeldItem} from "@/api/Item";
 import {Sprites} from "@/api/Sprites";
@@ -19,7 +19,7 @@ export type Pokemon = {
     id: number
     is_default: boolean
     location_area_encounters: string
-    moves: BaseMove[]
+    moves: MoveData[]
     name: string
     order: number
     past_types: TypeData[]

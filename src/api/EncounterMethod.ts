@@ -14,3 +14,7 @@ export type Language = {
     name: string
     url: string
 }
+
+export type BasicWithLanguage = {
+    language: Language
+}

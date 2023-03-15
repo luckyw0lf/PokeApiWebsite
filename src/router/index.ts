@@ -5,6 +5,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
+    meta: {
+      background: "",
+      backgroundimage: "background-image: url('../assets/background.jpg')"
+    },
     component: HomeView
   },
   {
@@ -18,6 +22,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/pokemon/:name',
     name: "pokemon",
+    meta: {
+      background: "#484848",
+      backgroundimage: ""
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/PokemonView.vue')
   }
 ]
