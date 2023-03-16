@@ -2,7 +2,7 @@
   <h2 class="text-2xl">{{title}}</h2>
   <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 pb-2">
     <div v-for="move in learnsAtLevel" v-bind:key="move">
-      <PokemonMove :base="move"/>
+      <MoveRender :base="move"/>
     </div>
   </div>
   <details>
@@ -11,7 +11,7 @@
     </summary>
     <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
       <div v-for="move in tmCase" v-bind:key="move">
-        <PokemonMove :base="move"/>
+        <MoveRender :base="move"/>
       </div>
     </div>
   </details>
@@ -19,22 +19,22 @@
 
 <script lang="ts">
 import {Options, Vue} from "vue-class-component";
-import PokemonMove from "./PokemonMove.vue";
 import {Pokemon} from "@/api/Pokemon";
 import {MoveData} from "@/api/Move";
+import MoveRender from "@/components/pokemon/structures/move/MoveRender.vue";
 
 @Options({
   components: {
-    PokemonMove
+    MoveRender,
   },
   props: {
-    pokemon: Pokemon,
+    pokemon: {} as Pokemon,
     title: String,
     tmTitle: String
   }
 })
 
-export default class PokemonAbilities extends Vue {
+export default class PokemonMoves extends Vue {
   pokemon!: Pokemon
   learnsAtLevel: MoveData[] = []
   tmCase: MoveData[] = []

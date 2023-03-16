@@ -1,4 +1,4 @@
-import {BaseMoveLearnMethod} from "@/api/Move";
+import {NamedApiResource} from "@/api/ApiCall";
 
 export type Version = {
     name: string
@@ -12,7 +12,7 @@ export type VersionDetail = {
 
 export type VersionGroupDetail = {
     level_learned_at: number,
-    move_learn_method: BaseMoveLearnMethod
+    move_learn_method: NamedApiResource
 }
 
 export type GameIndex = {

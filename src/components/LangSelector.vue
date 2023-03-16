@@ -14,7 +14,7 @@
 import {Vue} from "vue-class-component";
 import {lang} from "@/state/language";
 
-export default class PokemonMoves extends Vue {
+export default class LangSelector extends Vue {
   selectedLanguage = lang.name
 
   change(){

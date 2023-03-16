@@ -35,8 +35,8 @@ import PokemonTypeIcon from "@/components/PokemonTypeIcon.vue";
 import LoadingElement from "@/components/LoadingElement.vue";
 import PokemonHeader from "@/components/pokemon/PokemonHeader.vue";
 import PokemonAbilities from "@/components/pokemon/PokemonAbilities.vue";
-import PokemonMoves from "@/components/pokemon/PokemonMoves.vue";
 import { lang } from "@/state/language";
+import PokemonMoves from "@/components/pokemon/structures/PokemonMoves.vue";
 
 @Options({
   components: {PokemonMoves, PokemonTypeIcon, LoadingElement, PokemonHeader, PokemonAbilities},
@@ -71,7 +71,7 @@ export default class PokemonView extends Vue {
             this.encounterMethod = apiresult
             this.showEncounterMethod = true
           })
-          .catch(error => {this.encounteredNotFound = true})
+          .catch(() => {this.encounteredNotFound = true})
     }
   }
 }
