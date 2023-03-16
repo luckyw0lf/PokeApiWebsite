@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import {Options, Vue} from "vue-class-component";
-import {Ability, AbilityData, BaseAbility} from "@/api/Ability";
-import {getAbilityByURL} from "@/api/ApiFunctions";
+import {Ability, AbilityData} from "@/api/Ability";
+import {getNamedApiResource} from "@/api/ApiFunctions";
 import LoadingElement from "@/components/LoadingElement.vue";
 import { lang } from "@/state/language";
 
@@ -22,23 +22,22 @@ import { lang } from "@/state/language";
   },
 
   props: {
-    base: AbilityData
+    base: {} as AbilityData
   }
 })
 
-export default class PokemonAbility extends Vue {
+export default class AbilityRender extends Vue {
   base!: AbilityData
   showAbility = false
   ability: Ability | undefined
   lang = lang
   getAbility(){
-    return getAbilityByURL(this.base.ability.url)
-        .then(apiresult => { this.ability = apiresult})
+    return getNamedApiResource(this.base.ability)
+        .then(apiresult => { this.ability = apiresult as Ability})
         .finally(() => {
           this.showAbility = true
         })
   }
-
   capataliseFirst(string: string){
     return string.charAt(0).toUpperCase() + string.slice(1)
   }

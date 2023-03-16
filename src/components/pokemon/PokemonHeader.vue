@@ -33,7 +33,7 @@ import LoadingElement from "@/components/LoadingElement.vue";
 @Options({
   components: {LoadingElement, PokemonTypeIcon},
   props: {
-    pokemon: Pokemon
+    pokemon: {} as Pokemon
   }
 })
 

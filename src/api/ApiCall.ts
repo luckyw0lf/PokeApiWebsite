@@ -6,3 +6,8 @@ export type HomeApiCall = {
     previous: string|null
     results: BasePokemon[]
 }
+
+export type NamedApiResource = {
+    name: string
+    url: string
+}

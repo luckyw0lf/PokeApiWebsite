@@ -1,9 +1,9 @@
-import {BaseCategory} from "@/api/Category";
+import {NamedApiResource} from "@/api/ApiCall";
 
 export type Meta = {
     ailment: Ailment
     ailment_chance: number
-    category: BaseCategory
+    category: NamedApiResource
     crit_rate: number
     drain: number
     flinch_chance: number

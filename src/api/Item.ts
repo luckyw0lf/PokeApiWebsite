@@ -1,11 +1,7 @@
 import {VersionDetail} from "@/api/Version";
+import {NamedApiResource} from "@/api/ApiCall";
 
 export type HeldItem = {
-    item: BaseItem
+    item: NamedApiResource
     version_details: VersionDetail[]
-}
-
-export type BaseItem = {
-    name: string
-    url: string
 }

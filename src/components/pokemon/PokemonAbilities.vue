@@ -1,20 +1,20 @@
 <template>
   <div v-for="ability in pokemon.abilities" v-bind:key="ability">
-    <PokemonAbility :base="ability"/>
+    <AbilityRender :base="ability"/>
   </div>
 </template>
 
 <script lang="ts">
 import {Options, Vue} from "vue-class-component";
-import PokemonAbility from "./PokemonAbility.vue";
 import {Pokemon} from "@/api/Pokemon";
+import AbilityRender from "@/components/pokemon/structures/ability/AbilityRender.vue";
 
 @Options({
   components: {
-    PokemonAbility
+    AbilityRender
   },
  props: {
-   pokemon: Pokemon
+   pokemon: {} as Pokemon
  }
 })
 
