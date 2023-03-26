@@ -2,8 +2,6 @@
   <div class="w-full flex justify-center text-white">
     <div class="w-11/12 sm:w-3/4">
     <nav class="flex justify-center items-center">
-          <router-link to="/"><PokeDexLogo/></router-link>
-          <LangSelector/>
 <!--      <router-link to="/">Home</router-link> |-->
 <!--      <router-link to="/about">About</router-link>-->
     </nav>
@@ -22,14 +20,11 @@
 
 </style>
 <script>
-import PokeDexLogo from "@/components/PokeDexLogo";
-import LangSelector from "@/components/LangSelector"
 import {Options, Vue} from "vue-class-component";
 
 @Options({
   components: {
-    PokeDexLogo,
-    LangSelector
+
   }
 })
 export default class App extends Vue{
