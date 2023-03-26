@@ -25,6 +25,13 @@ export async function getNamedApiResource(prop: NamedApiResource) {
             return res
         })
 }
+export async function getNamedApiResourceByUrl(prop: string) {
+    return await fetch(prop)
+        .then(res => res.json())
+        .then(res => {
+            return res
+        })
+}
 
 export async function getEncounterByPokemonID(id: number): Promise<EncounterMethod> {
     return await fetch("https://pokeapi.co/api/v2/encounter-method/" + id)

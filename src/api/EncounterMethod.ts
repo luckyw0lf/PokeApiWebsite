@@ -1,8 +1,25 @@
+import {NamedApiResource} from "@/api/ApiCall";
+
 export type EncounterMethod = {
-    id: number
-    name: string
-    names: Translation[]
-    order: number
+    chance: number
+    condition_values: NamedApiResource[]
+    max_level: number
+    method: NamedApiResource
+    min_level: number
+}
+export type BaseEncounterMethod = {
+    location_area: NamedApiResource
+    version_details: EncounterMethodData[]
+}
+
+export type EncounterMethodData = {
+    encounter_details: EncounterMethod[]
+    max_chance: number
+    version: NamedApiResource
+}
+
+export type EncounterApiCall = {
+    encounters: BaseEncounterMethod[]
 }
 
 export type Translation = {

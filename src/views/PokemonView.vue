@@ -10,14 +10,7 @@
       </div>
       <div>
         <LoadingElement :show="showEncounterMethod" :elseif="encounteredNotFound">
-          <h2 class="text-2xl">Encounter method:</h2>
-          {{lang.filter(encounterMethod.names)[0].name}}
-          <template v-slot:elseif>
-            <h2 class="text-2xl">
-              Encounter method:
-            </h2>
-            No encounter method found.
-          </template>
+          <PokemonEncounters :encounters="encounterMethod"/>
         </LoadingElement>
       </div>
     </div>
@@ -28,8 +21,10 @@
 <script lang="ts">
 import {Options, Vue} from "vue-class-component";
 import {Pokemon} from "@/api/Pokemon";
-import {EncounterMethod} from "@/api/EncounterMethod";
-import {getEncounterByPokemonID, getPokemonByName} from "@/api/ApiFunctions";
+import {
+  getNamedApiResourceByUrl,
+  getPokemonByName
+} from "@/api/ApiFunctions";
 import {Ability} from "@/api/Ability";
 import PokemonTypeIcon from "@/components/PokemonTypeIcon.vue";
 import LoadingElement from "@/components/LoadingElement.vue";
@@ -37,15 +32,17 @@ import PokemonHeader from "@/components/pokemon/PokemonHeader.vue";
 import PokemonAbilities from "@/components/pokemon/PokemonAbilities.vue";
 import { lang } from "@/state/language";
 import PokemonMoves from "@/components/pokemon/structures/PokemonMoves.vue";
+import PokemonEncounters from "@/components/pokemon/structures/PokemonEncounters.vue";
+import {BaseEncounterMethod} from "@/api/EncounterMethod";
 
 @Options({
-  components: {PokemonMoves, PokemonTypeIcon, LoadingElement, PokemonHeader, PokemonAbilities},
+  components: {PokemonEncounters, PokemonMoves, PokemonTypeIcon, LoadingElement, PokemonHeader, PokemonAbilities},
 })
 
 export default class PokemonView extends Vue {
   pokemon: Pokemon|undefined
   abilities: Ability[] = []
-  encounterMethod: EncounterMethod|undefined
+  encounterMethod: BaseEncounterMethod[]|undefined
 
   showPokemon = false
   showEncounterMethod = false
@@ -66,9 +63,9 @@ export default class PokemonView extends Vue {
 
   private getEncounterMethod(){
     if(this.pokemon !== undefined){
-      getEncounterByPokemonID(this.pokemon.id)
+      getNamedApiResourceByUrl(this.pokemon.location_area_encounters)
           .then(apiresult => {
-            this.encounterMethod = apiresult
+            this.encounterMethod = apiresult as BaseEncounterMethod[]
             this.showEncounterMethod = true
           })
           .catch(() => {this.encounteredNotFound = true})
