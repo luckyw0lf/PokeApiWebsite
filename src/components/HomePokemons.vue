@@ -3,7 +3,8 @@ import {Options, Vue} from 'vue-class-component'
 import {homeApiCall} from "@/api/ApiFunctions";
 import PokemonCard from "@/components/PokemonCard.vue";
 import {HomeApiCall} from "@/api/ApiCall";
-import {Watch} from "vue-property-decorator";
+import {BasePokemon} from "@/api/Pokemon";
+import {pagenation} from "@/state/pagenation";
 
 @Options({
   components: {PokemonCard},
@@ -13,48 +14,43 @@ import {Watch} from "vue-property-decorator";
   }
 })
 export default class HomePokemons extends Vue {
-  limit!: number
-  offset = 0
+  limit = 20
   results: HomeApiCall|string = "Loading"
-  show = false
+  loadedPokemon: BasePokemon[]|string = "loading"
+  greyOutPrev = true;
 
   created(){
-    this.refreshPokemons()
-  }
-
-  @Watch('results')
-  public watchResults(call: HomeApiCall){
-    this.results = call
-    this.show = true
+    homeApiCall().then(apiresult => {
+      this.results = apiresult
+    }).finally(() => this.refreshPokemons())
   }
 
   refreshPokemons(){
-    this.results = "Loading"
-    homeApiCall(this.limit, this.offset).then(apiresult => {
-      this.results = apiresult
-    })
+    if(typeof this.results !== "string")
+      this.loadedPokemon = this.results.results.slice(pagenation.offset, pagenation.offset+this.limit)
+    this.greyOutPrev = pagenation.offset === 0
   }
 
   next(){
-    this.offset+=this.limit
+    pagenation.changeOffset(pagenation.offset+this.limit)
     this.refreshPokemons()
   }
 
   previous(){
-    this.offset-=this.limit
+    pagenation.changeOffset(pagenation.offset-this.limit)
     this.refreshPokemons()
   }
 }
 </script>
 <template>
-  <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full mb-5">
-    <div class="flex justify-center border-t-4 border-r-2 border-l-gray-700 border-b-gray-700 border-b border-l border-bag_light rounded-md" v-for="pokemon in results.results" v-bind:key="pokemon">
+  <div v-if="typeof loadedPokemon !== 'string'" class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full mb-5">
+    <div v-on:change="loadedPokemon" class="flex justify-center border-t-4 border-r-2 border-l-gray-700 border-b-gray-700 border-b border-l border-bag_light rounded-md" v-for="pokemon in loadedPokemon" v-bind:key="pokemon">
       <PokemonCard class="w-full flex items-center bg-bag rounded-sm" :pokemon="pokemon"/>
     </div>
   </div>
   <div class="flex text-center justify-center text-black">
     <div class="w-full flex justify-center">
-      <div class="p-5 bg-gray-100 rounded-md w-3/4 sm:w-1/2" v-if="this.offset-this.limit >= 0"  v-on:click="previous()">previous</div>
+      <div class="p-5 bg-gray-100 rounded-md w-3/4 sm:w-1/2" v-if="!greyOutPrev"  v-on:click="previous()">previous</div>
       <div class="p-5 bg-gray-100 rounded-md w-3/4 sm:w-1/2 text-gray-400" v-else>previous</div>
     </div>
     <div class="w-full flex justify-center">

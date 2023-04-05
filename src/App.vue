@@ -4,6 +4,7 @@
     <nav class="flex justify-center items-center">
           <router-link to="/"><PokeDexLogo/></router-link>
           <LangSelector/>
+
 <!--      <router-link to="/">Home</router-link> |-->
 <!--      <router-link to="/about">About</router-link>-->
     </nav>

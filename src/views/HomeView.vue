@@ -1,7 +1,7 @@
 <template>
   <div class="home flex flex-col justify-center">
     <HomeInfo/>
-    <HomePokemons :limit="20"/>
+    <HomePokemons/>
   </div>
 </template>
 

@@ -2,8 +2,8 @@ import {HomeApiCall, NamedApiResource} from "@/api/ApiCall";
 import {Pokemon} from "@/api/Pokemon";
 import {EncounterMethod} from "@/api/EncounterMethod";
 
-export async function homeApiCall(limit: number, offset: number): Promise<HomeApiCall> {
-    return fetch("https://pokeapi.co/api/v2/pokemon/?limit="+limit+"&offset="+offset)
+export async function homeApiCall(): Promise<HomeApiCall> {
+    return fetch("https://pokeapi.co/api/v2/pokemon?limit=100000")
         .then(res => res.json())
         .then(res => {
             return res as HomeApiCall

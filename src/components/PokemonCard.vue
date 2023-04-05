@@ -22,7 +22,7 @@ export default class PokemonCard extends Vue {
 
 <template>
   <router-link :to="{ name: 'pokemon', params: { name: pokemon.name }}" class="flex flex-col justify-center">
-    <PokemonImage :url="pokemon.url"/>
+    <PokemonImage class="w-[80px] h-[80px]" :url="pokemon.url"/>
     <p class="flex justify-center text-center">
       {{ capataliseFirst(this.pokemon.name) }}
     </p>
